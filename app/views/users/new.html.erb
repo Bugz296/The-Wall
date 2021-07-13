@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Wall Assignment - Intermediate</title>
+    </head>
+    <body>
+        <% if flash[:notice] %>
+            <% flash[:notice].each do |note| %>
+                <p id="notice"><%= note %></p>  
+            <% end %>
+        <% end %>
+        <form action="/users" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="text" name="user[username]" id="username">
+            <input type="submit" value="Signin">
+        </form>
+    </body>
+</html>

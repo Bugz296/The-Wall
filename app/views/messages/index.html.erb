@@ -1,0 +1,23 @@
+<% if flash[:notice] %>
+  <% flash[:notice].each do |note| %>
+    <p id="notice"><%= note %></p>  
+  <% end %>
+<% end %>
+<h1>Post a Message</h1>
+<form action="/messages" method="post">
+    <input type="hidden" name="msg[user_id]" value="<%= 1 %>">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <textarea name="msg[message]" id="msg_message"></textarea>
+    <input type="submit" id="Post-a-Message">
+</form>
+<h1>Messages:</h1>
+<% if @messages %>
+    <% @messages.each do |msg| %>
+        <h3><%= "#{msg.user.username} - #{msg.user.created_at}" %></h3>
+        <h5><%= msg.message %></h5>
+    <% end %>
+<% end %>
+<form action="/logout" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="submit" value="Logout">
+</form>
